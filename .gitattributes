@@ -61,3 +61,11 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+# Força arquivos de texto a usar LF
+* text=auto eol=lf
+
+# Unity scenes e assets geralmente não precisam conversão
+*.unity binary
+*.prefab binary
+
