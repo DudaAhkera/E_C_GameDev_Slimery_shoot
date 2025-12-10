@@ -52,6 +52,11 @@ public class DifficultyManager : MonoBehaviour
                 Objectives = new LevelObjectives(60, 30, 5);
                 break;
 
+            case "Vitória": // Cena final
+            case "GameOver": // Cena de derrota
+                Objectives = new LevelObjectives(0, 0, 0);
+                break;
+
             default:
                 Objectives = new LevelObjectives(0, 0, 0);
                 break;

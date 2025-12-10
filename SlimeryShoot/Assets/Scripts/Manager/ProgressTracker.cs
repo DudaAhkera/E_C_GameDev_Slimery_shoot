@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class ProgressTracker : MonoBehaviour
@@ -66,6 +67,32 @@ public class ProgressTracker : MonoBehaviour
             // Avança para a próxima fase
             MenuController.AdvanceLevel();
         }
+    }
+
+    private void AdvanceLevel()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        switch (currentScene)
+        {
+            case "Main":
+                SceneManager.LoadScene("Main1");
+                break;
+            case "Main1":
+                SceneManager.LoadScene("Main2");
+                break;
+            case "Main2":
+                SceneManager.LoadScene("Vitória");
+                break;
+            default:
+                SceneManager.LoadScene("Menu");
+                break;
+        }
+    }
+
+    public void TriggerGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }
 
