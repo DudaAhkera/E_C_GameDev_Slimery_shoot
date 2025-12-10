@@ -12,7 +12,6 @@ public class GameOverController : MonoBehaviour
     public string mainSceneName = "Main";
     public string menuSceneName = "Menu";
 
-
     void Start()
     {
         int last = PlayerPrefs.GetInt("LastScore", 0);
@@ -20,21 +19,28 @@ public class GameOverController : MonoBehaviour
 
         if (scoreText != null) scoreText.text = $"Pontuação: {last}";
         if (bestText != null) bestText.text = $"Melhor: {best}";
-
     }
 
-        public void OnReplay()
+    // Botão Replay volta para a última fase jogada
+    public void OnReplay()
     {
         if (!string.IsNullOrEmpty(MenuController.lastPlayedScene))
+        {
+            // volta para a última fase jogada (não salva GameOver como última cena)
             SceneManager.LoadScene(MenuController.lastPlayedScene);
+        }
         else
-            SceneManager.LoadScene("Main"); // fallback de segurança
+        {
+            // fallback: se não houver nada salvo, volta para a primeira fase
+            SceneManager.LoadScene(mainSceneName);
+        }
     }
 
-
+    // Botão Menu volta para o Menu principal
     public void OnMenu()
     {
         SceneManager.LoadScene(menuSceneName);
     }
 }
+
 

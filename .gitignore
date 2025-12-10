@@ -366,3 +366,8 @@ FodyWeavers.xsd
 /Temp/
 /Logs/
 /UserSettings/
+Obj/
+Build/
+*.csproj
+*.sln
+*.user

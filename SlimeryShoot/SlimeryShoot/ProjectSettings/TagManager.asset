@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - Object
+  - BossEnemy
+  - PlayerProjectile
+  - Obstacle
+  - Rock
+  - Colision
+  - Collectibles
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Enemy
+  - Projectile
+  - Rock
+  - Boss
+  - Player
+  - Colision
+  - LaserBoss
+  - Collectibles
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2239397061
+    locked: 0
+  - name: Player
+    uniqueID: 913932327
+    locked: 0
+  - name: Tiro
+    uniqueID: 4153840095
+    locked: 0
+  m_RenderingLayers:
+  - Default

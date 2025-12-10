@@ -7,7 +7,7 @@ public class VictorySequenceController : MonoBehaviour
     public GameObject title;
     public GameObject[] alienShips;
     public GameObject messageBox;
-    public GameObject replayButton;
+    public GameObject menuButton;
 
     [Header("Mensagem Final")]
     [TextArea(3,5)]
@@ -52,9 +52,9 @@ public class VictorySequenceController : MonoBehaviour
         // espera aproximada da duração do efeito
         yield return new WaitForSeconds(victoryMessage.Length * typewriter.charDelay);
 
-        // 4) Botão de replay
+        // 4) Botão de menu
         yield return new WaitForSeconds(buttonDelay);
-        replayButton.SetActive(true);
+        menuButton.SetActive(true);
     }
 }
 

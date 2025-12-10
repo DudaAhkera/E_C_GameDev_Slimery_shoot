@@ -11,11 +11,11 @@ public class MenuController : MonoBehaviour
     public void OnPlay()
     {
         currentLevelIndex = 0; // começa sempre da primeira fase
-        lastPlayedScene = gameSceneName[currentLevelIndex];   // salva a fase
+        lastPlayedScene = gameSceneName[currentLevelIndex];   // salva a fase inicial
         SceneManager.LoadScene(lastPlayedScene);
     }
 
-    // Botão com dificuldade (recebe 0 = Easy, 1 = Medium, 2 = Hard)
+    // Botão com dificuldade (recebe 0 Easy, 1 Medium, 2 Hard)
     public void StartGameWithDifficulty(int level)
     {
         string scene = "Main"; // padrão
@@ -24,7 +24,7 @@ public class MenuController : MonoBehaviour
         if (level == 1) scene = "Main1";  // Médio
         if (level == 2) scene = "Main2";  // Difícil
 
-        // salva a cena que foi escolhida
+        // salva a cena escolhida
         lastPlayedScene = scene;
         Debug.Log("Última cena salva: " + lastPlayedScene);
 
@@ -39,16 +39,23 @@ public class MenuController : MonoBehaviour
             // próxima fase
             string nextScene = Instance.gameSceneName[currentLevelIndex];
 
-            lastPlayedScene = nextScene;   // salva antes de carregar
-            SceneManager.LoadScene(nextScene);
+            // só salva se não for GameOver
+            if (nextScene != "GameOver")
+                lastPlayedScene = nextScene;
 
-         }
-         else
+            SceneManager.LoadScene(nextScene);
+        }
+        else
         {
-            // acabaram as fases
-            lastPlayedScene = Instance.gameSceneName[Instance.gameSceneName.Length - 1];
-            SceneManager.LoadScene("GameOver");
+            // acabaram as fases, vai para Vitória
+            SceneManager.LoadScene("Vitória");
         } 
+    }
+
+    public static void GoToGameOver()
+    {
+        // não atualiza lastPlayedScene aqui, para manter a última fase jogada
+        SceneManager.LoadScene("GameOver");
     }
 
     private void Awake()
@@ -64,4 +71,5 @@ public class MenuController : MonoBehaviour
         }
     }
 }
+
 
