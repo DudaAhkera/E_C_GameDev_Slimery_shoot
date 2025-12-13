@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8529391394911052413}
   - component: {fileID: 8809565808075007794}
   - component: {fileID: 7099198795615050774}
-  - component: {fileID: 8528132825652657936}
   - component: {fileID: 4561823755005335002}
   - component: {fileID: 4316879560710188036}
   m_Layer: 5
@@ -124,7 +123,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8528132825652657936}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameOverController, Assembly-CSharp
         m_MethodName: OnReplay
         m_Mode: 1
@@ -170,22 +169,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8528132825652657936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056617219311168081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 872a53f456235e74d97fd90c223a616f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameOverController
-  scoreText: {fileID: 0}
-  bestText: {fileID: 0}
-  mainSceneName: Main
-  menuSceneName: Menu
 --- !u!82 &4561823755005335002
 AudioSource:
   m_ObjectHideFlags: 0

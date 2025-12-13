@@ -159,7 +159,7 @@ public class PlayerHealth : MonoBehaviour
             PlayerPrefs.SetInt("BestScore", score);
 
         // salva última fase jogada
-        MenuController.lastPlayedScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(MenuController.lastPlayedScene);
 
         // troca de cena SEM atualizar HUD depois disso
         SceneManager.LoadScene("GameOver");

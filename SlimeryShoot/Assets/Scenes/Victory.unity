@@ -627,7 +627,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnMenu
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6591010041280188916, guid: b25a4cb1cdb55bf48b9addd7fa22c8a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameOverController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1760978423107952947, guid: b25a4cb1cdb55bf48b9addd7fa22c8a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -642,6 +647,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3117991202923461314, guid: b25a4cb1cdb55bf48b9addd7fa22c8a6, type: 3}
   m_PrefabInstance: {fileID: 561909815}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &561909818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6591010041280188916, guid: b25a4cb1cdb55bf48b9addd7fa22c8a6, type: 3}
+  m_PrefabInstance: {fileID: 561909815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561909816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &599041883
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +737,53 @@ Transform:
   m_Children:
   - {fileID: 1111964440}
   m_Father: {fileID: 1485487264}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &788009435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 788009437}
+  - component: {fileID: 788009436}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &788009436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788009435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa38f3319dd3fc4d88fc216840611bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuController
+  gameSceneName: []
+  replayButton: {fileID: 0}
+  menuButton: {fileID: 561909818}
+--- !u!4 &788009437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788009435}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 679.83765, y: 549.6258, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949170924
 GameObject:
@@ -1981,3 +2044,4 @@ SceneRoots:
   - {fileID: 2038341777}
   - {fileID: 599041885}
   - {fileID: 364840842}
+  - {fileID: 788009437}

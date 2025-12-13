@@ -24,6 +24,8 @@ public class GameOverController : MonoBehaviour
     // Botão Replay volta para a última fase jogada
     public void OnReplay()
     {
+        ProgressTracker.ResetProgress();
+
         if (!string.IsNullOrEmpty(MenuController.lastPlayedScene))
         {
             // volta para a última fase jogada (não salva GameOver como última cena)

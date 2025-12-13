@@ -1,75 +1,90 @@
 using UnityEngine;
+using UnityEngine.UI; 
 using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    public string[] gameSceneName;
+    public string[] gameSceneName; // nomes das cenas
     public static int currentLevelIndex = 0;
-    public static string lastPlayedScene; 
-    public static MenuController Instance { get; private set; }
 
-    public void OnPlay()
+    public Button replayButton;
+    public Button menuButton;
+    public Button playButton; 
+
+    public static bool isTransitioning = false;
+    public static string lastPlayedScene;
+
+    void Start()
     {
-        currentLevelIndex = 0; // começa sempre da primeira fase
-        lastPlayedScene = gameSceneName[currentLevelIndex];   // salva a fase inicial
+        isTransitioning = false;
+
+        if (playButton != null) playButton.onClick.AddListener(() => StartGame(0));
+        if (replayButton != null) replayButton.onClick.AddListener(ReplayLevel);
+        if (menuButton != null) menuButton.onClick.AddListener(GoToMenu);
+    }
+
+        // Método que vai para o nível anterior ou reinicia a cena de acordo com a necessidade.
+    private void ReplayLevel()
+    {
+        if (!string.IsNullOrEmpty(lastPlayedScene))
+            SceneManager.LoadScene(lastPlayedScene);
+
+    }
+
+        // Botão que envia para o Menu principal
+    private void GoToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void StartGame(int level)
+    {
+        level = Mathf.Clamp(level, 0, gameSceneName.Length - 1);
+        currentLevelIndex = level;
+        lastPlayedScene = gameSceneName[level];
+
+        ProgressTracker.ResetProgress(); // limpa os objetivos
         SceneManager.LoadScene(lastPlayedScene);
     }
 
-    // Botão com dificuldade (recebe 0 Easy, 1 Medium, 2 Hard)
-    public void StartGameWithDifficulty(int level)
+    public void AdvanceLevel()
     {
-        string scene = "Main"; // padrão
+        if (isTransitioning) return;
+        isTransitioning = true;
 
-        if (level == 0) scene = "Main";   // Fácil
-        if (level == 1) scene = "Main1";  // Médio
-        if (level == 2) scene = "Main2";  // Difícil
-
-        // salva a cena escolhida
-        lastPlayedScene = scene;
-        Debug.Log("Última cena salva: " + lastPlayedScene);
-
-        SceneManager.LoadScene(scene);
-    }
-
-    public static void AdvanceLevel()
-    {
-        currentLevelIndex++;
-        if (currentLevelIndex < Instance.gameSceneName.Length)
+        // se ainda NÃO for a última fase
+        if (currentLevelIndex < gameSceneName.Length - 1)
         {
-            // próxima fase
-            string nextScene = Instance.gameSceneName[currentLevelIndex];
+            currentLevelIndex++;
+            lastPlayedScene = gameSceneName[currentLevelIndex];
 
-            // só salva se não for GameOver
-            if (nextScene != "GameOver")
-                lastPlayedScene = nextScene;
-
-            SceneManager.LoadScene(nextScene);
+            ProgressTracker.ResetProgress();
+            SceneManager.LoadScene(lastPlayedScene);
         }
         else
         {
-            // acabaram as fases, vai para Vitória
-            SceneManager.LoadScene("Vitória");
-        } 
+            // só a Main2 chega aqui
+            SceneManager.LoadScene("Victory");
+        }
+    }
+        // Métodos estáticos para serem chamados de ProgressTracker
+    public static void GoToNextLevelStatic()
+    {
+        var controller = GameObject.FindObjectOfType<MenuController>();
+        if (controller != null) controller.AdvanceLevel();
     }
 
-    public static void GoToGameOver()
+    public static void GoToGameOverStatic()
     {
-        // não atualiza lastPlayedScene aqui, para manter a última fase jogada
+        if (isTransitioning) return;
+        isTransitioning = true;
+
         SceneManager.LoadScene("GameOver");
     }
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+
+
 }
+
 
 

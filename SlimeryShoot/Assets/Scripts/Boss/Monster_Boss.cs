@@ -159,7 +159,7 @@ public class Monster_Boss : MonoBehaviour
 
         Destroy(gameObject);
 
-        FindObjectOfType<ProgressTracker>().RegisterBossKill();
+        ProgressTracker.RegisterBossKill();
     }
 
 

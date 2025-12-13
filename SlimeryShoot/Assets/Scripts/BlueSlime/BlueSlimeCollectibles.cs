@@ -56,7 +56,7 @@ public class BlueSlimeCollectibles : MonoBehaviour
         // destruir o objeto
         Destroy(gameObject);
 
-        FindObjectOfType<ProgressTracker>().RegisterBlueSlimeCollect();
+        ProgressTracker.RegisterBlueSlimeCollect();
 
     }
 }

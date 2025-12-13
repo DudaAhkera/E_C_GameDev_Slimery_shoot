@@ -20,14 +20,13 @@ public class GameHUDManager : MonoBehaviour
 
     private void Awake()
     {
-        // Reset total ao carregar HUD da cena principal
         Instance = this;
 
         if (bossHealthBar != null)
             bossHealthBar.gameObject.SetActive(false);
 
-        if (ProgressTracker.Instance != null)
-            ProgressTracker.Instance.OnProgressUpdated += UpdateObjectivesHUD;
+        ProgressTracker.OnProgressUpdated += UpdateObjectivesHUD;
+        UpdateObjectivesHUD();
     }
 
     // ===================== PLAYER =====================
@@ -67,11 +66,7 @@ public class GameHUDManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Instance == this)
-            Instance = null;
-
-        if (ProgressTracker.Instance != null)
-            ProgressTracker.Instance.OnProgressUpdated -= UpdateObjectivesHUD;
+        ProgressTracker.OnProgressUpdated -= UpdateObjectivesHUD;
     }
 
     public void StartHealthBlink()
@@ -132,22 +127,22 @@ public class GameHUDManager : MonoBehaviour
 
         if (slimeObjectiveText != null)
         {
-            slimeObjectiveText.text = $"Slimes: {ProgressTracker.Instance.SlimeKills}/{goals.slimeKillsRequired}";
-            slimeObjectiveText.color = ProgressTracker.Instance.SlimeKills >= goals.slimeKillsRequired ? Color.green : Color.red;
+            slimeObjectiveText.text = $"Slimes: {ProgressTracker.SlimeKills}/{goals.slimeKillsRequired}";
+            slimeObjectiveText.color = ProgressTracker.SlimeKills >= goals.slimeKillsRequired ? Color.green : Color.red;
             slimeObjectiveText.gameObject.SetActive(goals.slimeKillsRequired > 0);
         }
 
         if (blueSlimeObjectiveText != null)
         {
-            blueSlimeObjectiveText.text = $"Blue Slimes: {ProgressTracker.Instance.BlueSlimes}/{goals.blueSlimesRequired}";
-            blueSlimeObjectiveText.color = ProgressTracker.Instance.BlueSlimes >= goals.blueSlimesRequired ? Color.green : Color.red;
+            blueSlimeObjectiveText.text = $"Blue Slimes: {ProgressTracker.BlueSlimes}/{goals.blueSlimesRequired}";
+            blueSlimeObjectiveText.color = ProgressTracker.BlueSlimes >= goals.blueSlimesRequired ? Color.green : Color.red;
             blueSlimeObjectiveText.gameObject.SetActive(goals.blueSlimesRequired > 0);
         }
 
         if (bossObjectiveText != null)
         {
-            bossObjectiveText.text = $"Bosses: {ProgressTracker.Instance.BossKills}/{goals.bossKillsRequired}";
-            bossObjectiveText.color = ProgressTracker.Instance.BossKills >= goals.bossKillsRequired ? Color.green : Color.red;
+            bossObjectiveText.text = $"Bosses: {ProgressTracker.BossKills}/{goals.bossKillsRequired}";
+            bossObjectiveText.color = ProgressTracker.BossKills >= goals.bossKillsRequired ? Color.green : Color.red;
             bossObjectiveText.gameObject.SetActive(goals.bossKillsRequired > 0);
         }
     }

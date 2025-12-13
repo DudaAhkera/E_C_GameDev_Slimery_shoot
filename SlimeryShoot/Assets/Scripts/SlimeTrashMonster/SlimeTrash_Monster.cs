@@ -139,7 +139,7 @@ public class SlimeTrash_Monster : MonoBehaviour
             GameHUDManager.Instance.AddPoints(pointsValue);
 
         // Ao acertar slime
-        FindObjectOfType<ProgressTracker>().RegisterSlimeKill();
+        ProgressTracker.RegisterSlimeKill();
     }
 
 }

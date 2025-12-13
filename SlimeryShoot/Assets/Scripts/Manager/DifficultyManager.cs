@@ -5,19 +5,11 @@ public class DifficultyManager : MonoBehaviour
 {
     public static DifficultyManager Instance;
 
-    public DifficultyLevel CurrentDifficulty { get; private set; }
     public LevelObjectives Objectives { get; private set; }
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
         Instance = this;
-        DontDestroyOnLoad(gameObject); 
-
         SetObjectivesForScene(SceneManager.GetActiveScene().name);
     }
 
@@ -52,28 +44,12 @@ public class DifficultyManager : MonoBehaviour
                 Objectives = new LevelObjectives(60, 30, 5);
                 break;
 
-            case "Vitória": // Cena final
-            case "GameOver": // Cena de derrota
-                Objectives = new LevelObjectives(0, 0, 0);
-                break;
-
             default:
                 Objectives = new LevelObjectives(0, 0, 0);
                 break;
         }
     }
 
-    public void SetDifficulty(DifficultyLevel level)
-    {
-        CurrentDifficulty = level;
-    }
-}
-
-public enum DifficultyLevel
-{
-    Easy,
-    Medium,
-    Hard
 }
 
 [System.Serializable]
